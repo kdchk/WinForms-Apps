@@ -16,5 +16,24 @@ namespace YesNoGenerator
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            YesNoGenerator yesNoGen = new YesNoGenerator() { Randomizer = new Random() };
+            label1.Text = yesNoGen.Oracul();
+        }
+
+        class YesNoGenerator
+        {
+            public Random Randomizer;
+            string[] yesNo = { "No", "Yes" };
+
+            public string Oracul()
+            {
+                int randomResult = Randomizer.Next(yesNo.Length);
+                string answer = yesNo[randomResult];
+                return $"Answer is: {answer}";
+            }
+        }
     }
 }
