@@ -21,11 +21,15 @@ namespace YesNoGenerator
         private void button1_Click(object sender, EventArgs e)
         {
             YesNoGenerator yesNoGen = new YesNoGenerator() { Randomizer = new Random() };
+            ColorGenerator colorGen = new ColorGenerator() { Colorizer = new Random() };
+            label1.ForeColor = Color.FromArgb(colorGen.ColorCode(), colorGen.ColorCode(), colorGen.ColorCode());
             label1.Text = yesNoGen.Oracul();
             button1.Text = "Try Again!";
 
             questionsCount++;
             label2.Text = $"times asked: {questionsCount}";
+
+            Console.WriteLine("----");
         }
 
         class YesNoGenerator
@@ -40,5 +44,18 @@ namespace YesNoGenerator
                 return $"Answer is: {answer}";
             }
         }
+        class ColorGenerator
+        {
+            public Random Colorizer;
+            short maxColorValue = 256;
+
+            public byte ColorCode()
+            {
+                byte colorValue = (byte)Colorizer.Next(maxColorValue);
+                Console.WriteLine(colorValue);
+                return colorValue;
+            }
+        }
     }
+
 }
