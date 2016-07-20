@@ -17,10 +17,15 @@ namespace YesNoGenerator
             InitializeComponent();
         }
 
+        public int questionsCount = 0;
         private void button1_Click(object sender, EventArgs e)
         {
             YesNoGenerator yesNoGen = new YesNoGenerator() { Randomizer = new Random() };
             label1.Text = yesNoGen.Oracul();
+            button1.Text = "Try Again!";
+
+            questionsCount++;
+            label2.Text = $"times asked: {questionsCount}";
         }
 
         class YesNoGenerator
